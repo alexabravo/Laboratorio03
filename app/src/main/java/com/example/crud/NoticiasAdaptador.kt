@@ -9,17 +9,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-public class NoticiasAdaptador(var noticias: MutableList<String>): RecyclerView.Adapter<NoticiasAdaptador.NoticiasHolder>() {
+public class NoticiasAdaptador(var noticias: MutableList<Noticia>): RecyclerView.Adapter<NoticiasAdaptador.NoticiasHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoticiasHolder {
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.item_noticia, parent, false)
         return NoticiasHolder(view)
-
     }
 
     override fun onBindViewHolder(holder: NoticiasHolder, position: Int) {
-        val actual = this.noticias[position]
+        val actual: Noticia = this.noticias[position]
         holder.bind(actual)
     }
 
@@ -29,9 +28,13 @@ public class NoticiasAdaptador(var noticias: MutableList<String>): RecyclerView.
 
     class NoticiasHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
-        fun bind(noticia: String) = with(itemView){
+        fun bind(noticia: Noticia) = with(itemView){
             val txtTitulo: TextView = findViewById(R.id.txtTitulo)
-            txtTitulo.text = noticia
+            val imagen: ImageView = findViewById(R.id.imagen)
+
+            txtTitulo.text = noticia.titulo
+
+            Picasso.get().load(noticia.imagen).into(imagen);
         }
     }
 }
