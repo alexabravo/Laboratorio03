@@ -12,20 +12,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        noticias.add("Prueba 1")//0
-        noticias.add("Prueba 2")//1
+        noticias.add("Prueba 1") //0
+        noticias.add("Prueba 2")
         noticias.add("Prueba 3")
         noticias.add("Prueba 4")
         noticias.add("Prueba 5")
 
         noticias.removeAt(0)
 
-        noticias[0] = "Elemento"
+        noticias[0]="Elemento"
 
         val adaptador: NoticiasAdaptador = NoticiasAdaptador(noticias)
 
-        val listaNoticias: RecyclerView = findViewById(R.id.listaNoticias)
-            listaNoticias.layoutManager = LinearLayoutManager(this)
+        val listaNoticias:RecyclerView = findViewById(R.id.listaNoticias)
+        listaNoticias.layoutManager = LinearLayoutManager(this)
+        listaNoticias.adapter = adaptador
 
     }
 }
